@@ -6,7 +6,6 @@ module "minikube" {
   aws_instance_type = "t3.medium"
   ssh_public_key    = "~/.ssh/id_rsa.pub"
   aws_subnet_id     = module.vpc.public_subnets[0]
-  hosted_zone         = var.HOSTED_ZONE
   hosted_zone_private = true
 
   tags = {
