@@ -1,0 +1,44 @@
+apiVersion: vertica.com/v1beta1
+kind: VerticaDB
+metadata:
+  name: verticadb
+spec:
+  imagePullPolicy: IfNotPresent
+  initPolicy: Create
+  kSafety: "1"
+  licenseSecret: vertica-license
+  superuserPasswordSecret: db-passwd
+  dbName: verticadb
+  communal:
+    credentialSecret: s3-creds
+    endpoint: http://10.50.51.201:9000
+    path: s3://k8bucket
+  local:
+    dataPath: /home/dbadmin/data
+    depotPath: /home/dbadmin/depot
+    storageClass: local-path
+    requestSize: 50Gi
+  shardCount: 12
+  subclusters:
+  - isPrimary: true
+    name: primary-subcluster
+    resources:
+      limits:
+        cpu: 1
+        memory: 2Gi
+      requests:
+        cpu: 1
+        memory: 2Gi
+    serviceType: NodePort
+    nodePort: 32001
+    size: 3
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+           matchExpressions:
+           - key: app.kubernetes.io/name
+             operator: In
+             values:
+             - vertica
+          topologyKey: "kubernetes.io/hostname"
