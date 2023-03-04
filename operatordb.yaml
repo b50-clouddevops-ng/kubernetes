@@ -16,7 +16,6 @@ spec:
   local:
     dataPath: /home/dbadmin/data
     depotPath: /home/dbadmin/depot
-    storageClass: local-path
     requestSize: 50Gi
   shardCount: 12
   subclusters:
@@ -24,7 +23,7 @@ spec:
     name: primary-subcluster
     serviceType: NodePort
     nodePort: 32001
-    size: 4
+    size: 3
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
