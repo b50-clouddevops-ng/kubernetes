@@ -22,13 +22,6 @@ spec:
   subclusters:
   - isPrimary: true
     name: primary-subcluster
-    resources:
-      limits:
-        cpu: 1
-        memory: 2Gi
-      requests:
-        cpu: 1
-        memory: 2Gi
     serviceType: NodePort
     nodePort: 32001
     size: 3
