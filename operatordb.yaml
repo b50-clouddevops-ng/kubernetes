@@ -24,7 +24,7 @@ spec:
     name: primary-subcluster
     serviceType: NodePort
     nodePort: 32001
-    size: 3
+    size: 4
     affinity:
       podAntiAffinity:
         requiredDuringSchedulingIgnoredDuringExecution:
