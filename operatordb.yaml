@@ -11,8 +11,8 @@ spec:
   dbName: verticadb
   communal:
     credentialSecret: s3-creds
-    endpoint: http://10.50.51.201:9000
-    path: s3://k8bucket
+    endpoint: http://127.0.0.1:9000
+    path: s3://verticang
   local:
     dataPath: /home/dbadmin/data
     depotPath: /home/dbadmin/depot
