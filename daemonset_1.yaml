@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+   name: nimmideploymentrecreate
+   namespace: nimmi
+   labels:
+      app: myapp
+      type: frontend
+spec:
+   template:
+     metadata:
+       name: testpod1
+       labels:
+          app: myapp
+          type: frontend
+     spec:
+        containers:
+          - name: anything 
+            image: veeradocker1108/atyuha2
+   selector:
+    matchLabels: 
+      app: myapp
+      type: frontend
+      
+	   
