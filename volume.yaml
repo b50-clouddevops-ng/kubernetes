@@ -12,6 +12,6 @@ spec:
       mountPath: /data
   volumes:
   - name: bucketng1
-    gcePersistentDisk:
-      pdName: my-gcs-bucket
-      fsType: ext4
+    # gcePersistentDisk:
+    #   pdName: my-gcs-bucket
+    #   fsType: ext4
