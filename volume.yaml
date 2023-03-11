@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
   - name: my-container
-    image: veeradocker1108/syamimage
+    image: nginx
     volumeMounts:
     - name: gcs-creds
       mountPath: /etc/gcs-creds
