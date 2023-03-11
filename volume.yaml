@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: volume
-   namespace: nimmi
+  namespace: nimmi
 spec:
   containers:
   - name: my-container
