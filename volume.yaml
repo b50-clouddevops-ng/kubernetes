@@ -1,17 +1,22 @@
 apiVersion: v1
 kind: Pod
 metadata:
-    name: volumeexample
-    namespace: nimmi
+  name: volume
+   namespace: nimmi
 spec:
   containers:
   - name: my-container
     image: veeradocker1108/atyuha2
     volumeMounts:
-    - name: bucketng1
+    - name: gcs-creds
+      mountPath: /etc/gcs-creds
+      readOnly: true
+    - name: gcs-data
       mountPath: /data
+    command: ["sh", "-c", "echo 'Hello, world!' > /data/gcs-test.txt && gsutil cp /data/gcs-test.txt gs://bucketng1/"]
   volumes:
-  - name: bucketng1
-    # gcePersistentDisk:
-    #   pdName: my-gcs-bucket
-    #   fsType: ext4
+  - name: gcs-creds
+    secret:
+      secretName: gcs-creds
+  - name: gcs-data
+    emptyDir: {}
