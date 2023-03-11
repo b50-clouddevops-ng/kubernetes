@@ -6,7 +6,7 @@ metadata:
 spec:
   containers:
   - name: my-container
-    image: my-image
+    image: veeradocker1108/atyuha2
     volumeMounts:
     - name: bucketng1
       mountPath: /data
