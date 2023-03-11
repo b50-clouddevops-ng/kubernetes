@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: my-container
+      image: veeradocker1108/atyuha2
+  volumeMounts:
+    name: bucketng1
+    mountPath: /data
+  volumes:
+    - name: bucketng1
+      gcePersistentDisk:
+        pdName: my-gcs-bucket
+        fsType: ext4
