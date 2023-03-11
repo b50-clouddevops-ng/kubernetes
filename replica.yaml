@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+   name: nimmireplica
+   namespace: nimmi
+   labels:
+      app: myapp
+      type: frontend
+spec:
+  replicas: 5
+  template:
+     metadata:
+       name: testpod1
+       labels:
+         app: myapp
+         type: frontend
+     spec:
+        containers:
+          - name: anything
+            image: veeradocker1108/atyuha2
+  selector:
+    matchLabels:
+      app: myapp
+      type: frontend
