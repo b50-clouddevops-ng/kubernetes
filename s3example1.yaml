@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: s3example1
+  namespace: nimmi
+spec:
+  containers:
+  - name: my-container
+    image: nginx
+    command: ["sh", "-c", "echo 'Hello, world!' > /data/gcs-test.txt && gsutil cp /data/gcs-test.txt gs://bucketng1/"]
+    args: ["apt-get update && apt-get install -y curl && \
+            curl https://sdk.cloud.google.com | bash && \
+            exec -l $SHELL && \
+            echo 'source /root/google-cloud-sdk/path.bash.inc' >> ~/.bashrc && \
+            echo 'source /root/google-cloud-sdk/completion.bash.inc' >> ~/.bashrc && \
+            /root/google-cloud-sdk/bin/gcloud config set --installation component_manager/disable_update_check true && \
+            /root/google-cloud-sdk/bin/gcloud components install gsutil && \
+            echo 'Hello, world!' > /data/gcs-test.txt && gsutil cp /data/gcs-test.txt gs://bucketng/ && \
+            nginx -g 'daemon off;'"]
+    volumeMounts:
+    - name: google-cloud-sdk
+      mountPath: /root/google-cloud-sdk
+    - name: gcs-creds
+      mountPath: /etc/gcs-creds
+      readOnly: true
+    - name: gcs-data
+      mountPath: /data
+  volumes:
+  - name: google-cloud-sdk
+    emptyDir: {}
+  - name: gcs-creds
+    secret:
+      secretName: gcs-creds
+  - name: gcs-data
+    emptyDir: {}
